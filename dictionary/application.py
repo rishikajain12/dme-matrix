@@ -18,7 +18,6 @@ import openpyxl
 from csv import reader
 from collections import OrderedDict
 
-
 app = Flask(__name__)
 
 CORS(app)
@@ -26,13 +25,18 @@ CORS(app)
 @app.route('/matrix_item_logic', methods=['GET', 'POST'])
 def extract():
     obj1 = flask.request.json
-    print(obj1)
+    print(obj1['path'])
+    url = 'http://localhost:5000/'+obj1['path']
+    # urllib.request.urlretrieve(url, 'D:/dme-matrix/dictionary')
+    # print(obj1)
     # obj1=json.loads(str1)
     # dummy = json.dumps(obj1)
+    # return
     identity=uuid.uuid1()
-    baseurl="C:/Users/Lenovo/Desktop/dictionary"
-    name=baseurl+"\matrix"+str(identity)+".csv"
+    baseurl="D:/dme-matrix/dictionary"
+    fileName = "matrix-"+str(identity)+".csv"
     # print(name)
+    name=baseurl+"/"+fileName
     values=[]
     keylist=[]
     trow=[] 
@@ -46,20 +50,28 @@ def extract():
     except:
         return("Error 404: couldnt find the dictionary files")
     try:
-        col=obj1['desc']
-        print(col)
-        path=obj1['path']
-        print(obj1['path'])
-        # print(path)
-        df = pd.read_csv(path,usecols=[col]) 
-    except:
+        # col=obj1['desc']
+        # print(col)
+        # path=obj1['path']
+        # print(obj1['path'])
+        print(url)
+        df = pd.read_csv(url,usecols=['label'])
+        df.to_csv(fileName, 
+                  index = None,
+                  header=True)
+        print("df: ",df)
+    except Exception as e:
+        print(e)
         return("Error 404: couldnt find the input files")
     try:
+        jsonOp = {}
         temp_lists = df.values.tolist()
         for key,value in mydict.items():
             keylist.append(key)
         keylist.insert(0,'product Name')
         print(len(keylist))
+        jsonOp['header'] = keylist
+        data = []
         with open(name, 'w') as csv_file:  
             writer = csv.writer(csv_file)
             writer.writerow(keylist)
@@ -72,7 +84,7 @@ def extract():
                 # with open('matrix.csv', 'a') as csv_file:
                 #     writer = csv.writer(csv_file) 
                 #     writer.writerow([j])
-                print("desc:",j)
+                # print("desc:",j)
                 trow=[]  
                 trow.append(j) 
                 for key,value in mydict.items():
@@ -94,21 +106,25 @@ def extract():
                                 else:
                                     trow.append("")
                             # print(trow)
+                data.append(trow)
                 with open(name, 'a', newline="") as csv_file:
                     writer = csv.writer(csv_file)
                     writer.writerow(trow)
 
                     
 
-
+        jsonOp['data'] = data
         update={
             'status':'200', 
             'msg':'processed successfully',
             'filename':'matrix.csv',
-            'path':'C//Users//Lenovo//Desktop//dictionary//matrix.csv'
+            'path':'C//Users//Lenovo//Desktop//dictionary//matrix.csv',
+            'data': jsonOp
             }
         return jsonify(update)
-    except:
+    except Exception as e:
+        exc_tb = sys.exc_info()
+        print(e,exc_tb.tb_lineno)
         return("Error 500:server Error")
         
 if __name__ == '__main__':
