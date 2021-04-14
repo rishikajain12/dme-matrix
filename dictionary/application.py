@@ -27,15 +27,14 @@ def extract():
     obj1 = flask.request.json
     print(obj1['path'])
     url = 'http://localhost:5000/'+obj1['path']
-    # urllib.request.urlretrieve(url, 'D:/dme-matrix/dictionary')
-    # print(obj1)
+    
     # obj1=json.loads(str1)
     # dummy = json.dumps(obj1)
-    # return
+
     identity=uuid.uuid1()
     baseurl="D:/dme-matrix/dictionary"
     fileName = "matrix-"+str(identity)+".csv"
-    # print(name)
+    
     name=baseurl+"/"+fileName
     values=[]
     keylist=[]
@@ -46,16 +45,13 @@ def extract():
             with open('coors_new.csv', mode='w') as outfile:        
                 writer = csv.writer(outfile)
                 mydict = {rows[0]:rows[1] for rows in reader}
-                # print(mydict)
     except:
         return("Error 404: couldnt find the dictionary files")
     try:
-        # col=obj1['desc']
-        # print(col)
+        col=obj1['desc']
         # path=obj1['path']
-        # print(obj1['path'])
-        print(url)
-        df = pd.read_csv(url,usecols=['label'])
+
+        df = pd.read_csv(url,usecols=[col])
         df.to_csv(fileName, 
                   index = None,
                   header=True)
@@ -72,31 +68,21 @@ def extract():
         print(len(keylist))
         jsonOp['header'] = keylist
         data = []
-        with open(name, 'w') as csv_file:  
-            writer = csv.writer(csv_file)
-            writer.writerow(keylist)
-        # print(temp_lists)
+        
+        # with open(name, 'w') as csv_file:  
+        #     writer = csv.writer(csv_file)
+        #     writer.writerow(keylist)
     
         for item in temp_lists:
 
-            # print(item)
             for j in item:
-                # with open('matrix.csv', 'a') as csv_file:
-                #     writer = csv.writer(csv_file) 
-                #     writer.writerow([j])
-                # print("desc:",j)
                 trow=[]  
                 trow.append(j) 
                 for key,value in mydict.items():
-                    
-                    # print(key,value)
                     val = value.split(",")
-                    # print(val)
                     for v in val:
                         
                         if re.findall(r"\b"+re.escape(v)+r"\b", j):
-                            # print("KEY: ",key," VALUE: ",v)
-                            # print(keylist.index(key),key,v)
                             for i in range(0,len(keylist)):
                                 if(i == keylist.index(key)):
                                     if(trow[i]):
@@ -105,11 +91,11 @@ def extract():
                                         trow.insert(i,v)
                                 else:
                                     trow.append("")
-                            # print(trow)
                 data.append(trow)
-                with open(name, 'a', newline="") as csv_file:
-                    writer = csv.writer(csv_file)
-                    writer.writerow(trow)
+
+                # with open(name, 'a', newline="") as csv_file:
+                #     writer = csv.writer(csv_file)
+                #     writer.writerow(trow)
 
                     
 
@@ -117,8 +103,6 @@ def extract():
         update={
             'status':'200', 
             'msg':'processed successfully',
-            'filename':'matrix.csv',
-            'path':'C//Users//Lenovo//Desktop//dictionary//matrix.csv',
             'data': jsonOp
             }
         return jsonify(update)
