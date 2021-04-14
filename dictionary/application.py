@@ -25,7 +25,7 @@ CORS(app)
 @app.route('/matrix_item_logic', methods=['GET', 'POST'])
 def extract():
     obj1 = flask.request.json
-    print(obj1['path'])
+    print(obj1)
     url = 'http://localhost:5000/'+obj1['path']
     
     # obj1=json.loads(str1)
@@ -45,19 +45,22 @@ def extract():
             with open('coors_new.csv', mode='w') as outfile:        
                 writer = csv.writer(outfile)
                 mydict = {rows[0]:rows[1] for rows in reader}
-    except:
+    except Exception as e:
+        exc_tb = sys.exc_info()
+        print(e,exc_tb.tb_lineno)
         return("Error 404: couldnt find the dictionary files")
     try:
-        col=obj1['desc']
+        # col=obj1['description']
         # path=obj1['path']
 
-        df = pd.read_csv(url,usecols=[col])
+        df = pd.read_csv(url,usecols=['description'])
         df.to_csv(fileName, 
                   index = None,
                   header=True)
         print("df: ",df)
     except Exception as e:
-        print(e)
+        exc_tb = sys.exc_info()
+        print(e,exc_tb.tb_lineno)
         return("Error 404: couldnt find the input files")
     try:
         jsonOp = {}

@@ -1,0 +1,106 @@
+description
+Unique Netsuite system ID auto-generated at the time of entry
+(Item SKU) Item unique id created by us for inventory mgt. related to MES3
+Item Model Number
+Vendor Name
+Product display name (Website Product Title)
+Packaging unit/unit of measurement
+Unit of measurement for internal stock
+Unit of measurement for purchase
+Unit of measurement for sales
+Product preferred Vendor Name
+Shipping criteria - Free or Flat
+Flat shipping rate
+no
+Supply/Rehab/Marketing
+McKesson vendor unique id
+Indemed vendor unique id
+Indemed vendor Unit type
+Fabrication Enterprises vendor unique id
+NDC vendor unique id
+Qty per unit type
+Item UPC code
+Item HCPCS code
+Item UNSPCS code
+Item EAN code
+Item GTIN code
+"Default ""YES"""
+Item cost of preferred vendor
+Product display name (Website Product Title)
+"Default ""YES"""
+"Default ""YES"""
+"Default ""YES"""
+Product manufacturer name
+"Product model no (manufacturer model /part number), related to MES2"
+Country of manufacturing
+Product vendor name
+"Priority vendor for purchase of product, based on cost"
+Cost from single/multiple vendors
+Product display name (Website Product Title)
+"Choose ""Item Defined Cost"" by default"
+Total Cost (includes cost + other expenses)
+"Choose ""Medicaleshop Inc"" by default (for credit card)"
+"Choose ""1"" by default"
+Weight of product (in pounds)
+MSRP (maximum suggested retail price)
+MSRP (maximum suggested retail price)
+Online selling price
+for display of product on website
+SEO Meta Title
+Product display name (Website Product Title)
+Detailed description of product features and other info (features tab on product page) (HTML)
+Short description (used only in google shopping right now) (HTML)
+Item Technical Specification table (sizing tab on product page) (HTML)
+Special Price Upon Request Check Mark
+"message display for ""POA"" products"
+"Seo Meta Description, Meta Keywords"
+Product URL
+"""Keywords"" for site search"
+Attached Product Image (Multiple image names)
+Image Name Tag
+Show items related to product/Assign child product in a group product
+Name of manufacturer/series
+Product Warranty Tab
+Product Return Policy Tab
+Manufacturer Videos Links (Videos Tab)
+"Files Pdfs Link for order forms, brochure, tech guide (Order Forms Tab)"
+Resna/Local delivery/custom message (quick view on website product page)
+"Check mark for ""FREE SHIP"" items"
+"Check mark for ""Hygiene"" items if product is Non-returnable"
+Check mark for items where prescription is required
+"Check mark for ""FREE WHITE GLOVE DELIVERY"" items"
+"Check mark for ""FREE CURBSIDE DELIVERY"" items"
+"Check mark for ""BULK"" items where extra shipping is to be paid by customer after order"
+"Check mark for ""OVERSIZED"" items where extra shipping is to be paid by customer after order"
+"Check mark for ""FREE SHIPPING"" in our local service area"
+"Check mark for items that have been ""CRASH TESTED"" by manufacturer"
+"Check mark for items that are ""ADA COMPLIANT"""
+"Check mark for items that are eligible for ""INSURANCE BILLING"""
+"Check mark for items that ""STERILE and NON-RETURNABLE"""
+"Check mark for items that are ""CUSTOM BUILT"" as per customer requirement"
+Select custom message to be displayed on any particular product
+"Select for items that are ""SPECIAL PRICING/OFFER"" eligible"
+Tax charged by manufacturer/vendor
+Handling fee charged by manufacturer/vendor
+Actual shipping cost charged by manufacturer/vendor
+"Special Price Available, Click Here to request a Quote (link) (link to web form)"
+ Choose Yes/No (for marketing in goolge shopping)
+Brand promotion code
+Additional discount percentage applied on brand level
+Category promotion code
+Additional discount percentage applied on category level
+"Promotion code for ""Google shopping"""
+Select item is Main product or Accessory
+Online price criteria
+Online promotion criteria
+Image URL for google shopping
+product Attribute Set
+Combined weight of package (Item+packaging material)
+Shipping package dimensions
+"Actual Product dimensions assembled, without packaging material"
+Shipping package Width
+Shipping package Length
+Shipping package Height
+Length x Width x Height
+Tax Category selection
+product enable/disable
